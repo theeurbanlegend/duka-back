@@ -15,6 +15,14 @@ export class DrugController {
     getAllDrugTxns(){
         return this.txnService.getTxns()
     }
+    @Post('txns/confirm')
+    confirmTxn(@Body() txnDetails:any){
+        return this.txnService.confirmTxn(txnDetails)
+    }
+    @Post('txns/validate')
+    validateTxn(@Body() txnDetails:any){
+        return this.txnService.validateTxn(txnDetails)
+    }
     @Get(':id/single')
     getDrugById(@Param('id') drugId:ObjectId){
         return this.drugService.getDrugById(drugId)

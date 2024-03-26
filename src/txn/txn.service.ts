@@ -24,8 +24,13 @@ export class TxnService {
   ) {}
   async getTxns():Promise<Txn[]|string>{
     const allTxns=await this.txnModel.find({}).populate('tx_details.item_affected')
-    if(allTxns.length===0) return "No txns created yet"
     return allTxns
+  }
+  async confirmTxn(txnDetails:any){
+    console.log(txnDetails)
+  }
+  async validateTxn(txnDetails:any){
+    console.log(txnDetails)
   }
   async performCheckout(txnData: createTxDto):Promise<string> {
     const { tx_details}=txnData
