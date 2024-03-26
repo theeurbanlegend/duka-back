@@ -15,7 +15,7 @@ export class DrugService {
     constructor(@InjectModel('Drug') private drugModel: Model<Drug>) {}
 
     async getAllDrugs(): Promise<Drug[]> {
-        return await this.drugModel.find().exec();
+        return await this.drugModel.find().populate('manufacturer_id');
     }
 
     async getDrugById(drugId: ObjectId): Promise<Drug> {

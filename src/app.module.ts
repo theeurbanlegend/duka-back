@@ -13,9 +13,7 @@ import { TxnModule } from './txn/txn.module';
 import { DrugService } from './drug/drug.service';
 import { ConfigModule } from '@nestjs/config';
 import * as dotenv from 'dotenv'; // Import dotenv
-
 dotenv.config(); // Load environment variables from .env file
-
 
 @Module({
   imports: [
