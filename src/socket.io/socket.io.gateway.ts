@@ -2,6 +2,7 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 import { OnGatewayConnection, OnGatewayDisconnect,  SubscribeMessage,  WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { BarcodeService } from 'src/barcode/barcode.service';
+import { Transaction } from 'src/txn/txn.service';
 
 const corsOptions: CorsOptions = {
   origin: '*', // Allow all origins (adjust for production)
@@ -28,6 +29,10 @@ export class SocketIoGateway implements OnGatewayConnection, OnGatewayDisconnect
     const { variants } = await this.barcodeService.getBarcodeDetails(barcode);
     this.server.to('barcodeRoom').emit('obtainedBarcodeDetails', { variants, message: barcode });
   }
+  
+  async handleTxnReceiveEvent(transaction:Transaction){
+    this.server.to('txnRoom').emit('obtainedTxnDetails', transaction);
+  }
 
   // Create a room for barcode messages and add clients named "receiver" and "sender"
   handleConnection(client: Socket) {
@@ -38,6 +43,8 @@ export class SocketIoGateway implements OnGatewayConnection, OnGatewayDisconnect
         client.join('barcodeRoom');
       } else if (role === 'receiver') {
         client.join('barcodeRoom');
+      }else if(role==='txnReceiver'){
+        client.join('txnRoom')
       }
     });
   }

@@ -4,7 +4,9 @@ export class createDrugDto{
     @IsNotEmpty()
     item_name:string
     @IsNotEmpty()
-    item_price:string
+    retail_price:string
+    @IsNotEmpty()
+    selling_price:string
     @IsOptional()
     manufacturer_id:string
     @IsOptional()

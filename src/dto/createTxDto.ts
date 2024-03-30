@@ -7,6 +7,16 @@ export class createTxDto{
     @IsArray()
     tx_details:txn_detail[]
     @IsNotEmpty()
+    payment_type:string
+    payment_details?:{
+        tx_id:string
+        tx_type:string
+        tx_time:string
+        amnt_paid:string
+        cus_name:string
+        cus_no:string
+    }
+    @IsNotEmpty()
     tx_total:string
 }
 interface txn_detail{

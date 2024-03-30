@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { DrugService } from './drug.service';
 import { ObjectId } from 'mongoose';
 import { createDrugDto, createTxDto } from 'src/dto';
-import { TxnService } from 'src/txn/txn.service';
+import { Transaction, TxnService } from 'src/txn/txn.service';
 
 @Controller('drug')
 export class DrugController {
@@ -15,8 +15,9 @@ export class DrugController {
     getAllDrugTxns(){
         return this.txnService.getTxns()
     }
+    
     @Post('txns/confirm')
-    confirmTxn(@Body() txnDetails:any){
+    confirmTxn(@Body() txnDetails:Transaction ){
         return this.txnService.confirmTxn(txnDetails)
     }
     @Post('txns/validate')
@@ -29,7 +30,6 @@ export class DrugController {
     }
     @Post('/add')
     addDrug(@Body() drugDto:createDrugDto){
-        console.log(drugDto)
         return this.drugService.addDrug(drugDto)
     }
     @Post(':id/update')
