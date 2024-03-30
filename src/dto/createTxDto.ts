@@ -1,4 +1,4 @@
-import { IsArray, IsNotEmpty, IsString } from "class-validator"
+import { IsArray, IsNotEmpty, IsOptional, IsString } from "class-validator"
 import { ObjectId } from "mongoose"
 
 export class createTxDto{
@@ -8,13 +8,14 @@ export class createTxDto{
     tx_details:txn_detail[]
     @IsNotEmpty()
     payment_type:string
-    payment_details?:{
+    @IsOptional()
+    payment_details:{
         tx_id:string
-        tx_type:string
-        tx_time:string
-        amnt_paid:string
-        cus_name:string
-        cus_no:string
+    tx_type:string
+    tx_time:string
+    amnt_paid:string
+    cus_name:string
+    cus_no:string
     }
     @IsNotEmpty()
     tx_total:string
@@ -24,4 +25,12 @@ interface txn_detail{
     stock_in:string
     stock_out:string
     profit:number
+}
+interface payment_detail{
+    tx_id:string
+    tx_type:string
+    tx_time:string
+    amnt_paid:string
+    cus_name:string
+    cus_no:string
 }

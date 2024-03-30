@@ -13,14 +13,15 @@ export const transactionSchema = new mongoose.Schema(
         profit: { type: Number },
       },
     ],
-    payment_details: [
-      { txn_id: { type: String },
+    payment_type:{type:String},
+    payment_details: {
+       txn_id: { type: String },
        tx_type: { type: String } ,
        tx_time: { type: String } ,
        amnt_paid: { type: String  },
       cus_name: { type: String } ,
-       cus_no: { type: String } },
-    ],
+       cus_no: { type: String } 
+    },
     served_by: { type: mongoose.Types.ObjectId, ref: 'User' },
     tx_total: { type: String },
   },
