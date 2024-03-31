@@ -42,7 +42,9 @@ export class TxnService {
     private socketService:SocketIoGateway
   ) {}
   async getTxns():Promise<Txn[]|string>{
-    const allTxns=await this.txnModel.find({}).populate('tx_details.item_affected')
+    const allTxns=await this.txnModel.find({})
+    .populate('tx_details.item_affected')
+    .populate('served_by')
     return allTxns
   }
   

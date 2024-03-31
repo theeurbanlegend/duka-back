@@ -9,6 +9,7 @@ export const transactionSchema = new mongoose.Schema(
         item_affected: { type: mongoose.Types.ObjectId, ref: 'Drug' },
         stock_in: { type: Number },
         stock_out: { type: Number },
+        retail:{type:String},
         selling_price: { type: String },
         profit: { type: Number },
       },

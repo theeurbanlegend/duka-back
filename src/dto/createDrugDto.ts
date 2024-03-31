@@ -11,6 +11,8 @@ export class createDrugDto{
     manufacturer_id:string
     @IsOptional()
     barcode_no:string
+    @IsOptional()
+    expiry_date:Date
     @IsNumber()
     in_stock:number
 }

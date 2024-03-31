@@ -17,6 +17,8 @@ export class createTxDto{
     cus_name:string
     cus_no:string
     }
+    @IsOptional()
+    served_by:ObjectId
     @IsNotEmpty()
     tx_total:string
 }
@@ -24,6 +26,8 @@ interface txn_detail{
     item_affected:ObjectId,
     stock_in:string
     stock_out:string
+    retail:string
+    selling_price:string
     profit:number
 }
 interface payment_detail{
